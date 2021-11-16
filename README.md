@@ -9,8 +9,7 @@
 
 #### **Code Building:** 
 
-- build.gradle: please ensure that your build.gradle file has all the necessary dependencies that are required for the database.
-- ADDHERE (Discord bot API): used for running the bot on a Discord server.
+- N/A: N/A.
 
 
 
@@ -24,7 +23,6 @@ Note: all team members worked and contributed as equally as possible with coding
 
 #### **Imported Libraries:** 
 
-- Node.js: FILL THIS.
-- Neon-js: FILL THIS.
-- NeoExpress: FILL THIS.
-- Neo3-boa: FILL THIS.
+- neo3-boa: Boa is a platform that allows us to quickly write, compile, and test smart contracts for the Neo blockchain using python.
+- Neo-Express: A private blockchain network optimized for development scenarios. It locally mimics the behavior of the Neo network. We’ll use it as a development tool to deploy and interact with our smart contracts as if they were running on Neo’s MainNet, but without paying GAS for each interaction.
+- neon-js: A powerful JavaScript SDK for the Neo blockchain that provides a lightweight library focused on blockchain interactions.
