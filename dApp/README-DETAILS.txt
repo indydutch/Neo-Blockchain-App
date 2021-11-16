@@ -1,0 +1,9 @@
+dApp location (Windows):
+"C:\Users\Matth\OneDrive\Documents\Fl Poly\FL Poly 2021-22 S1 (Fall 2021)\Senior Design 1\dApp"
+
+dApp location (Ubuntu):
+"/mnt/c/Users/Matth/OneDrive/Documents/Fl Poly/FL Poly 2021-22 S1 (Fall 2021)/Senior Design 1/dApp"
+
+coz wallet address: NbFGDyhv9Xg4af1ZKQvVrGRtnXspqADwHU
+
+contract script hash for hello_world (0xa76e371fcb2fb8a22dee4ebb313b8017b8976983)
