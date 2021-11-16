@@ -1,0 +1,60 @@
+{
+  "magic": 1355502954,
+  "address-version": 53,
+  "consensus-nodes": [
+    {
+      "tcp-port": 50013,
+      "ws-port": 50014,
+      "rpc-port": 50012,
+      "wallet": {
+        "name": "node1",
+        "accounts": [
+          {
+            "private-key": "8b4d142889a548dd9054b6f4c5f67ccbc355e75c12d1726940dd6b37ee190517",
+            "script-hash": "NZaCdXNcJdkgwz2jTQWjCezk3ngBHYwKUZ",
+            "label": null,
+            "is-default": true,
+            "contract": {
+              "script": "0c21031d6fa8b8b6d3cead55496ab37f85fda0a92dbcd9750a188d41e435db0bfe59a14156e7b327",
+              "parameters": [
+                "Signature"
+              ]
+            }
+          },
+          {
+            "private-key": "8b4d142889a548dd9054b6f4c5f67ccbc355e75c12d1726940dd6b37ee190517",
+            "script-hash": "NeZCp2hM45wUx3w79xFXYGmLKwwMYu65Em",
+            "label": "Consensus MultiSigContract",
+            "is-default": false,
+            "contract": {
+              "script": "110c21031d6fa8b8b6d3cead55496ab37f85fda0a92dbcd9750a188d41e435db0bfe59a111419ed0dc3a",
+              "parameters": [
+                "Signature"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "wallets": [
+    {
+      "name": "coz",
+      "accounts": [
+        {
+          "private-key": "017dd1318a020cc2a2f879060988977e6760d5f11c371fb82aec65914ce57c11",
+          "script-hash": "NbFGDyhv9Xg4af1ZKQvVrGRtnXspqADwHU",
+          "label": null,
+          "is-default": true,
+          "contract": {
+            "script": "0c21031afbf9eeb1507fc7f234d963553b20c18f737e78fcf3434348a9fc534bbea8da4156e7b327",
+            "parameters": [
+              "Signature"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "settings": {}
+}
