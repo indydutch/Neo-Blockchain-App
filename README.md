@@ -15,8 +15,6 @@
 
 #### **Team Contributions:**
 
-Note: all team members worked and contributed as equally as possible with coding and researching for what we needed for this project. For formality's sake, here is a list of team members and what we are each contributing:
-
 - Matthew Dutchess (Team Lead): Blockchain Creation, Blockchain Initialization, Smart Contract Creation, Front-End Development.
 
   
