@@ -4,7 +4,7 @@
 
 #### **Code Organization:** 
 
-- index.html: driver html for the dApp front-end. Shows a button to the user. When the button is pressed, it shows the result "World" along with the current block that has been generated on the blockchain.
+- index.html: driver html for the dApp front-end. Shows a button to the user. When the button is pressed, it shows the result "World" along with the current block that has been generated on the blockchain. In addition, the user can upload a PDF file which is converted to base64, then back to PDF form and shown to the user. This functionality will eventually be used and store the encrypted base64 PDF string on the Blockchain for later retrieval.
   
 
 #### **Code Building:** 
@@ -16,6 +16,10 @@
 #### **Team Contributions:**
 
 - Matthew Dutchess (Team Lead): Blockchain Creation, Blockchain Initialization, Smart Contract Creation, Front-End Development.
+
+- Calvin Hariprasad: N/A.
+
+- Cameryn Costanzo: N/A.
 
   
 
