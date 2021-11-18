@@ -1,44 +1,118 @@
-<!--import neon-js-->
-<script src="https://unpkg.com/@cityofzion/neon-js@next"></script>
-
-<script>
-  const nodeURL = "http://localhost:50012"
-
-  <!-- default hash: 0xb1ed87a9ce71dcc465a2ed41348c6cc8494ab9b5 -->
-  const contractHash = "0xa76e371fcb2fb8a22dee4ebb313b8017b8976983"
-
-  async function helloNeoBlockchain() {
-    <!--Interface Function-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Neo Demo DApp</title>
+	<link href="style.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+	<h1>Welcome to the Accusoft Neo Demo DApp Webpage!</h1><hr><br>
 	
-    //define our invocation
-    const intent = {
-      scriptHash: contractHash,
-      operation: "hello",
-	  params: [],
-    }
+	<input id="inputFile" type="file" onchange="convertToBase64();" />
 
-    //define how we will connect to the network
-    const facade = await Neon.api.NetworkFacade.fromConfig({
-      node: nodeURL,
-    })
+	<script type="text/javascript">
+	  var b64pdf;
+      function convertToBase64() {
+        //Read File
+        var selectedFile = document.getElementById("inputFile").files;
+        //Check File is not Empty
+        if (selectedFile.length > 0) {
+          // Select the very first file from list
+          var fileToLoad = selectedFile[0];
+          // FileReader function for read the file.
+          var fileReader = new FileReader();
+          var base64;
+          // Onload of file read the file content
+          fileReader.onload = function(fileLoadedEvent) {
+            base64 = fileLoadedEvent.target.result;
+             // Print data in console
+            console.log(base64);
+			b64pdf = base64.replace('data:application/pdf;base64,','');
+			convertToPdf();
+          };
+          // Convert data to base64
+          fileReader.readAsDataURL(fileToLoad);
+        }
+      }
+	</script>
+	
+	
+	<script>
+	  function convertToPdf() {
+		// The Base64 string of a simple PDF file
+		var b64 = b64pdf;
+		// Decode Base64 to binary and show some information about the PDF file (note that I skipped all checks)
+		var bin = atob(b64);
+		console.log('File Size:', Math.round(bin.length / 1024), 'KB');
+		console.log('PDF Version:', bin.match(/^.PDF-([0-9.]+)/)[1]);
+		console.log('Create Date:', bin.match(/<xmp:CreateDate>(.+?)<\/xmp:CreateDate>/)[1]);
+		console.log('Modify Date:', bin.match(/<xmp:ModifyDate>(.+?)<\/xmp:ModifyDate>/)[1]);
+		console.log('Creator Tool:', bin.match(/<xmp:CreatorTool>(.+?)<\/xmp:CreatorTool>/)[1]);
 
-    //invoke our smart contract and decode the result
-    const res = await facade.invoke(intent)
-    const value = Neon.u.HexString.fromBase64(res.stack[0].value).toAscii()
+		// Embed the PDF into the HTML page and show it to the user
+		var obj = document.createElement('object');
+		obj.style.width = '100%';
+		obj.style.height = '842pt';
+		obj.type = 'application/pdf';
+		obj.data = 'data:application/pdf;base64,' + b64;
+		document.body.appendChild(obj);
 
-    //get the current block-height
-    const height = await facade.getRpcNode().getBlockCount()
+		// Insert a link that allows the user to download the PDF file
+		var link = document.createElement('a');
+		link.innerHTML = 'Download PDF file';
+		link.download = 'file.pdf';
+		link.href = 'data:application/octet-stream;base64,' + b64;
+		document.body.appendChild(link);
+	  }
+	</script>
 
-    //present the result on the interface
-    document.getElementById("storage").innerHTML = value
-    document.getElementById("block").innerHTML = height
-  }
-</script>
+	
+	<div id="neon-js">
+	  <!--import neon-js-->
+	  <script src="https://unpkg.com/@cityofzion/neon-js@next"></script>
+	  
+	  <script>
+	    const nodeURL = "http://localhost:50012"
+
+	    <!-- default hash: 0xb1ed87a9ce71dcc465a2ed41348c6cc8494ab9b5 -->
+	    const contractHash = "0xa76e371fcb2fb8a22dee4ebb313b8017b8976983"
+
+	    async function helloNeoBlockchain() {
+		  <!--Interface Function-->
+	
+		  //define our invocation
+	      const intent = {
+			scriptHash: contractHash,
+			operation: "hello",
+			params: [],
+		  }
+
+		  //define how we will connect to the network
+		 const facade = await Neon.api.NetworkFacade.fromConfig({
+			node: nodeURL,
+		  })
+
+          //invoke our smart contract and decode the result
+		  const res = await facade.invoke(intent)
+		  const value = Neon.u.HexString.fromBase64(res.stack[0].value).toAscii()
+
+		  //get the current block-height
+		  const height = await facade.getRpcNode().getBlockCount()
+
+		  //present the result on the interface
+		  document.getElementById("storage").innerHTML = "<p><div id=undrln>Value:</div> " + value + "</p>"
+		  document.getElementById("block").innerHTML = "<p><div id=undrln>Block Height:</div> " + height + "</p>"
+		}
+	  </script>
   
-<button onclick="helloNeoBlockchain();">
-    Hello
-</button>
+	  <button onclick="helloNeoBlockchain();">
+		Hello
+	  </button><br><br>
 
-<div id="storage"></div>
+	  <div id="storage"></div>
 
-<div id="block"></div>
+	  <div id="block"></div><br>
+	</div>
+  </body>
+</html>
