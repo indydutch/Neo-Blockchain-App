@@ -55,9 +55,9 @@
 				var bin = atob(b64);
 				console.log('File Size:', Math.round(bin.length / 1024), 'KB');
 				console.log('PDF Version:', bin.match(/^.PDF-([0-9.]+)/)[1]);
-				console.log('Create Date:', bin.match(/<xmp:CreateDate>(.+?)<\/xmp:CreateDate>/)[1]);
-				console.log('Modify Date:', bin.match(/<xmp:ModifyDate>(.+?)<\/xmp:ModifyDate>/)[1]);
-				console.log('Creator Tool:', bin.match(/<xmp:CreatorTool>(.+?)<\/xmp:CreatorTool>/)[1]);
+				//console.log('Create Date:', bin.match(/<xmp:CreateDate>(.+?)<\/xmp:CreateDate>/)[1]);
+				//console.log('Modify Date:', bin.match(/<xmp:ModifyDate>(.+?)<\/xmp:ModifyDate>/)[1]);
+				//console.log('Creator Tool:', bin.match(/<xmp:CreatorTool>(.+?)<\/xmp:CreatorTool>/)[1]);
 
 				// Embed the PDF into the HTML page and show it to the user
 				var obj = document.createElement('object');
