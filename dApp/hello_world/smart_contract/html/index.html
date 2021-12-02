@@ -5,20 +5,29 @@
 		<meta name="viewport" content="width=device-width">
 		<title>Neo Demo DApp</title>
 		<link href="style.css" rel="stylesheet" type="text/css"/>
+		<!-- CDN for importing CryptoJS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 	</head>
 	<body>
 		<h1>Welcome to the Accusoft Neo Demo DApp Webpage!</h1><hr><br>
 	
+		<!-- Button for getting a response from the Blockchain -->
 		<button onclick="helloNeoBlockchain();">
 			Hello
 		</button><br><br>
 
+		<!-- div for showing the value -->
 		<div id="storage"></div>
 
+		<!-- div for showing the block height -->
 		<div id="block"></div><br>
+		
+		
 	
+		<!-- file upload -->
 		<input id="inputFile" type="file" onchange="convertToBase64();" />
 
+		<!-- script for converting the uploaded PDF to base64 along with hashing the PDF -->
 		<script type="text/javascript">
 			var b64pdf;
 			function convertToBase64() {
@@ -34,6 +43,12 @@
 					// Onload of file read the file content
 					fileReader.onload = function(fileLoadedEvent) {
 						base64 = fileLoadedEvent.target.result;
+						var data = event.target.result;
+						
+						// hashing the PDF
+						var encrypted = CryptoJS.SHA256(data);
+						console.log('Encrypted hash of PDF: ' + encrypted);
+						
 						// Print data in console
 						console.log(base64);
 						b64pdf = base64.replace('data:application/pdf;base64,','');
@@ -79,7 +94,7 @@
 	
 
 		<div id="neon-js">
-			<!--import neon-js-->
+			<!-- CDN for importing NeonJS -->
 			<script src="https://unpkg.com/@cityofzion/neon-js@next"></script>
 	  
 			<script>
@@ -89,28 +104,28 @@
 				const contractHash = "0xa76e371fcb2fb8a22dee4ebb313b8017b8976983"
 
 				async function helloNeoBlockchain() {
-					<!--Interface Function-->
+					<!-- Interface Function -->
 	
-					//define our invocation
+					// Define our invocation
 					const intent = {
 						scriptHash: contractHash,
 						operation: "hello",
 						params: [],
 					}
 
-					//define how we will connect to the network
+					// Define how we will connect to the network
 					const facade = await Neon.api.NetworkFacade.fromConfig({
 						node: nodeURL,
 					})
 
-					//invoke our smart contract and decode the result
+					// Invoke our smart contract and decode the result
 					const res = await facade.invoke(intent)
 					const value = Neon.u.HexString.fromBase64(res.stack[0].value).toAscii()
 
-					//get the current block-height
+					// Get the current block-height
 					const height = await facade.getRpcNode().getBlockCount()
 
-					//present the result on the interface
+					// Present the result on the interface
 					document.getElementById("storage").innerHTML = "<p><div id=undrln>Value:</div> " + value + "</p>"
 					document.getElementById("block").innerHTML = "<p><div id=undrln>Block Height:</div> " + height + "</p>"
 				}
